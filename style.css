@@ -1,0 +1,32 @@
+body{
+background-color: darkgray;
+
+}
+
+#header{
+    text-align: center;
+}
+
+#footer{
+    text-align: center;
+}
+
+#content{
+    display: flex;
+    height: 500px;
+    gap: 30px;
+    justify-content: center;
+}
+
+#leftPanel{
+    background-color: grey;
+    max-width: 300px;
+    flex: 1;
+}
+
+#rightPanel{
+    background-color: white;
+    max-width: 500px;
+    flex: 1;
+    
+}
