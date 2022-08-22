@@ -1,5 +1,3 @@
-
-const content = document.querySelector('#rightPanel');
 function makeSquareGrid(col){
     content.style.gridTemplateColumns= `repeat(${col},auto)`;
     for(i = 0; i < (col* col); i++){
@@ -8,4 +6,12 @@ function makeSquareGrid(col){
     };
 };
 
+function colorGrid(e){
+    e.target.style.backgroundColor = "black";
+}
+
+const content = document.querySelector('#rightPanel');
 makeSquareGrid(16);
+const grids = Array.from(document.querySelectorAll('.grid-items'));
+grids.forEach(grid => grid.addEventListener('mouseenter',colorGrid));
+
