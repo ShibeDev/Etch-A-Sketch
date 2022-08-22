@@ -1,5 +1,7 @@
 var color = "black";
-
+var rainbowCounter = 0;
+var rainbowMode = false;
+const rainbowColors = ["Red","Orange","Yellow","Green","Blue","Indigo","Violet"]
 
 function removeAllChildNodes(parent){
     while(parent.firstChild){
@@ -18,7 +20,11 @@ function makeSquareGrid(col){
 };
 
 function colorGrid(e){
-    e.target.style.backgroundColor = color;
+    if (rainbowMode){ 
+        e.target.style.backgroundColor = rainbowColors[rainbowCounter];
+        rainbowCounter = (rainbowCounter + 1) % 7;
+    }
+    else  e.target.style.backgroundColor = color;
 }
 
 function initialzieGrid()
@@ -49,7 +55,15 @@ buttons.forEach((button) => {
               break;
             case "2":
                 color = "white";
+                rainbowMode = false;
               break;
+            case "3":
+                color = "black";
+                rainbowMode = false;
+            break;
+            case "4":
+                rainbowMode = true;
+            break;
             default:
               break;
           }
