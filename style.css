@@ -25,8 +25,13 @@ background-color: darkgray;
 }
 
 #rightPanel{
+    display: grid;
+    grid-template-columns: repeat(1,auto);
     background-color: white;
     max-width: 500px;
     flex: 1;
-    
+}
+
+.grid-items{
+    border: 1px solid;
 }
