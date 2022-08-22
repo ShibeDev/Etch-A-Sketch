@@ -30,6 +30,8 @@ background-color: darkgray;
     background-color: grey;
     max-width: 300px;
     flex: 1;
+    gap: 30px;
+    padding-top: 30px;
 }
 
 /* Main grid window */
@@ -85,3 +87,16 @@ background-color: darkgray;
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
   }
+
+  #gridSizeText{
+    margin-top: 0px;
+  }
+
+  button{
+    padding: 8px 16px;
+    border-radius: 8px;
+    width: 100px;
+    height: 50px;
+    flex: 1;
+  }
+
