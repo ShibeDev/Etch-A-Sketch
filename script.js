@@ -13,7 +13,17 @@ function colorGrid(e){
 }
 
 const content = document.querySelector('#rightPanel');
+
+
+var slider = document.getElementById("myRange");
+const sliderVals = Array.from(document.querySelectorAll('.sliderVal'));
+sliderVals.forEach(sliderval => sliderval.textContent = slider.value);
 makeSquareGrid(16);
 const grids = Array.from(document.querySelectorAll('.grid-items'));
 grids.forEach(grid => grid.addEventListener('mouseenter',colorGrid));
 
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    sliderVals.forEach(sliderval => sliderval.textContent = slider.value);
+    //makeSquareGrid(slider.value);
+}
