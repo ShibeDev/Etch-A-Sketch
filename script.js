@@ -1,3 +1,5 @@
+var color = "black";
+
 function makeSquareGrid(col){
     content.style.gridTemplateColumns= `repeat(${col},auto)`;
     for(i = 0; i < (col* col); i++){
@@ -7,7 +9,7 @@ function makeSquareGrid(col){
 };
 
 function colorGrid(e){
-    e.target.style.backgroundColor = "black";
+    e.target.style.backgroundColor = color;
 }
 
 const content = document.querySelector('#rightPanel');
