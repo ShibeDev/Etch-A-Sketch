@@ -1,14 +1,21 @@
+/* constants and variables for grid color and modes */
+const BW_MODE = 0;
+const RAINBOW_MODE = 1;
+const RANDOM_MODE = 2;
+const rainbowColors = ["Red","Orange","Yellow","Green","Blue","Indigo","Violet"]
+var mode = BW_MODE;
 var color = "black";
 var rainbowCounter = 0;
-var rainbowMode = false;
-const rainbowColors = ["Red","Orange","Yellow","Green","Blue","Indigo","Violet"]
 
+/* helper function to remove all grid cells when resetting grid */
 function removeAllChildNodes(parent){
     while(parent.firstChild){
         parent.removeChild(parent.firstChild);
     }
 }
 
+/* Remove all grid cells, re-add col^2 cells to grid panel*/
+/* Then call helper function to re-add mouse over event listener to each cell */
 function makeSquareGrid(col){
     removeAllChildNodes(content);
     content.style.gridTemplateColumns= `repeat(${col},auto)`;
@@ -19,12 +26,22 @@ function makeSquareGrid(col){
     initialzieGrid();
 };
 
+/* function to set background color of grid cell based on mode */
 function colorGrid(e){
-    if (rainbowMode){ 
+    if (mode === BW_MODE) e.target.style.backgroundColor = color;
+    else if (mode === RAINBOW_MODE){ 
         e.target.style.backgroundColor = rainbowColors[rainbowCounter];
         rainbowCounter = (rainbowCounter + 1) % 7;
     }
-    else  e.target.style.backgroundColor = color;
+    /* random color mode picks a random color as long as its not white */
+    else{
+        color = '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6);
+        while(color==="#ffffff"){
+            color = '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6);
+        }
+        e.target.style.backgroundColor = color;
+            
+    }
 }
 
 function initialzieGrid()
@@ -39,6 +56,7 @@ function resetGrid()
     color = "black";
     slider.value = 16;
     sliderVals.forEach(sliderval => sliderval.textContent = slider.value);
+    mode = BW_MODE;
 }
 
 const content = document.querySelector('#rightPanel');
@@ -55,14 +73,16 @@ buttons.forEach((button) => {
               break;
             case "2":
                 color = "white";
-                rainbowMode = false;
               break;
             case "3":
                 color = "black";
-                rainbowMode = false;
+                mode = BW_MODE;
             break;
             case "4":
-                rainbowMode = true;
+                mode = RAINBOW_MODE;
+            break;
+            case "5":
+                mode = RANDOM_MODE;
             break;
             default:
               break;
